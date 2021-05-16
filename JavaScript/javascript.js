@@ -2,13 +2,13 @@ window.onload = function (){
 
 let images = [
 {
-	img: ''
+	img: 'https://github.com/Eugene860/Slider/blob/master/Images/image%202.1.png?raw=true'
 },
 {	
-	img: ''
+	img: 'https://github.com/Eugene860/Slider/blob/master/Images/image%2022.png?raw=true'
 },
 {
-	img: ''
+	img: 'https://github.com/Eugene860/Slider/blob/master/Images/image%203.png?raw=true'
 }
 ];
 
