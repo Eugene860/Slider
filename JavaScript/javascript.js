@@ -15,74 +15,53 @@ let images = [
 let img = document.querySelector(".rightblock-step2");
 let prev = document.querySelector(".vectorleft");
 let next = document.querySelector(".vectorright");
-let dotleft = document.querySelector(".dot1");
-let dotcenter = document.querySelector(".dot2");
-let dotright = document.querySelector(".dot3");
-let jsAdmiral = document.querySelector("#js_admiral");
-let jsThieves = document.querySelector("#js_thieves");
-let jsPatriotic = document.querySelector("#js_patriotic");
-
-let setImage = (index) => {
-  img.style.backgroundImage = `url(${images[index].img})`
-}
+let dots = document.querySelectorAll(".dots");
+let cities = document.querySelectorAll(".s2m__item");
 
 let currentIndex = 0;
 
-function initArrows() {
-prev.addEventListener("click", () => {
-	if (currentIndex > 0) {
-	setImage(currentIndex - 1);
-  currentIndex -= 1;} else {
-  	setImage(2);
-  	currentIndex = 2;
-  }
+setImage(currentIndex);
+
+
+
+prev.addEventListener('click', () => {
+    if (currentIndex === 0) {
+        setImage(images.length - 1)
+    } else {
+        setImage(currentIndex - 1)
+    }
 });
-next.addEventListener("click", () => {
-	if (currentIndex < 2) {
-  setImage(currentIndex + 1);
-  currentIndex += 1;} else {
-  	setImage(0);
-  	currentIndex = 0;}
-})}
-initArrows();
+next.addEventListener('click', () => {
+    if (currentIndex === (images.length - 1)) {
+        setImage(0)
+    } else {
+        setImage(currentIndex + 1)
+    }
+});
 
-function initDots () {
-dotleft.addEventListener("click", () => {
-	setImage(0)
-})
-dotcenter.addEventListener("click", () => {
-	setImage(1)
-})
-dotright.addEventListener("click", () => {
-	setImage(2)
-})
+
+dots.forEach ((item, index) => item.addEventListener('click', (e) => {
+    e.preventDefault();
+    setImage(index);
+})); 
+
+cities.forEach((item, index) => item.addEventListener('click', (e) => {
+    e.preventDefault();
+    setImage(index);
+}));
+
+function setImage(index) {
+	img.style.backgroundImage = `url(${images[index].img})`
+    
+    dots.forEach(item => {
+        item.classList.remove('activedot')
+    });
+    dots[index].classList.add('activedot');
+
+    cities.forEach(item => {
+        item.classList.remove('is-active2')
+    });
+    cities[index].classList.add('is-active2');
+    currentIndex = index;
 }
-initDots()
-
-function initTitles () {
-jsAdmiral.addEventListener("click", () => {
-	setImage(0)
-})
-jsThieves.addEventListener("click", () => {
-	setImage(1)
-})
-jsPatriotic.addEventListener("click", () => {
-	setImage(2)
-})}
-initTitles()
-
-/*function according () {
-	if (index = 1) {
-		jsAdmiral.classList.remove("is-active2");
-		jsThieves.classList.add("is-active2");
-		dotleft.classList.remove("activedot");
-		dotcenter.classList.add("activedot");
-		} else if (index = 2) {
-		jsThieves.classList.remove("is-active2");
-		jsPatriotic.classList.add("is-active2");
-		dotcenter.classList.remove("activedot");
-		dotright.classList.add("activedot");
-	} 
-}
-according()*/
 }
